@@ -1,0 +1,10 @@
+{
+  "chainId": 56,
+  "deployer": "0xB063201eCA1F0b67EeBCe163D3f6f076D98Bd8bA",
+  "owner": "0x704807FCfC21B6b607aa408f9313d414a82baE91",
+  "registry": "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F",
+  "address": "0x044F7c963C595Bf20C97731Ad1336d4C7547d0Ca",
+  "deployTx": "0xcfc04e11c05c0c8f1a07dd557e828f62d669490259658ae6016c27207bb352cb",
+  "transferOwnershipTx": "0x656f590fb82fad8d824f29431c43f6839f5daf8c30b839e908aa37bbd0a1c8a7",
+  "at": "2026-11-18T23:04:31.683Z"
+}

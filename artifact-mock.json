@@ -1,0 +1,38 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "who",
+          "type": "address"
+        }
+      ],
+      "name": "giveAgentId",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600e575f80fd5b5060f58061001b5f395ff3fe6080604052348015600e575f80fd5b50600436106030575f3560e01c80631d4dd5a214603457806370a0823114605d575b5f80fd5b605b603f3660046094565b6001600160a01b03165f90815260208190526040902060019055565b005b608260683660046094565b6001600160a01b03165f9081526020819052604090205490565b60405190815260200160405180910390f35b5f6020828403121560a3575f80fd5b81356001600160a01b038116811460b8575f80fd5b939250505056fea26469706673582212206a2756aaaef0250d2583588c0b2f485983a069fdee565f5f0d07e985d86b1c7964736f6c634300081a0033",
+  "deployedSize": 245
+}
