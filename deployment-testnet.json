@@ -1,0 +1,9 @@
+{
+  "chainId": 97,
+  "deployer": "0x1e8d54f9178c7B9386D0C483523Ab7524c6d522d",
+  "mockRegistry": "0x3CB421006864637Df2174d5E6176C18818b071b3",
+  "mockDeployTx": "0x15f9f458d82843ad1abe60103d8ae85c40275cb9f85723fc726565acc96eddaa",
+  "address": "0xED5f8ce1eD04D6800920281FD4554f831980bb6C",
+  "deployTx": "0x5d0be500699d39582ba35ac2c9f9e8ff081427f6952f258d66cc18dbac7871d4",
+  "at": "2026-11-18T23:10:00.984Z"
+}

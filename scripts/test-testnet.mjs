@@ -35,8 +35,8 @@ const co = c.connect(outsider);
 const results = [];
 const check = (name, cond) => { results.push([name, cond ? 'PASS' : 'FAIL']); if (!cond) process.exitCode = 1; };
 const reverts = async (name, txPromise) => { try { await (await txPromise).wait(); check(name, false); } catch { check(name, true); } };
-const V = ethers.parseEther('0.001');
-const FUND = ethers.parseEther('0.01');
+const V = ethers.parseEther('0.0001'); // = MIN_JOB_VALUE kontrak; disesuaikan sisa saldo faucet
+const FUND = ethers.parseEther('0.00006'); // disesuaikan saldo faucet deploy 1 (0,0005 tBNB)
 
 console.log('client/deploy1:', client.address);
 console.log('worker:', worker.address);
@@ -49,10 +49,18 @@ await (await mock.giveAgentId(worker.address)).wait();
 if ((await provider.getBalance(worker.address)) < FUND / 2n) await (await client.sendTransaction({ to: worker.address, value: FUND })).wait();
 if ((await provider.getBalance(outsider.address)) < FUND / 2n) await (await client.sendTransaction({ to: outsider.address, value: FUND })).wait();
 
+// Top-up kecil dari outsider ke client: run pertama berhenti di createJob
+// (OutOfFunds) setelah outsider terdanai; saldo client perlu ditambah agar
+// nilai job minimum + gas muat. Outsider menyisakan cukup untuk 1 tx revert.
+if ((await provider.getBalance(client.address)) < ethers.parseEther('0.00013')) {
+  await (await outsider.sendTransaction({ to: client.address, value: ethers.parseEther('0.00003') })).wait();
+  console.log('top-up client dari outsider: 0.00003 tBNB; saldo client:', ethers.formatEther(await provider.getBalance(client.address)));
+}
+
 check('isAgent(client)=true', await c.isAgent(client.address));
 check('isAgent(outsider)=false', !(await c.isAgent(outsider.address)));
 await reverts('register non-Agent ditolak', co.registerPassport());
-await (await c.registerPassport()).wait();
+if (!(await c.passportOf(client.address)).registered) await (await c.registerPassport()).wait();
 check('passport client terdaftar', (await c.passportOf(client.address)).registered === true);
 
 await (await c.createJob(worker.address, 'ipfs://agentwork-test-job-1', 3600, 86400, { value: V })).wait();
